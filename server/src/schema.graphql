@@ -1,0 +1,21 @@
+type Query {
+    cognito(username: String!): CognitoUser!
+    totalCognito: Int!
+    allCognito: [CognitoUser!]!
+    fetchDate: Int!
+}
+
+type CognitoUser {
+    id: ID!
+    username: String!
+    name: String!
+    problems: Int
+    solves: Int
+    location: Location!
+    avatar: String
+}
+
+type Location {
+    country: String!
+    city: String!
+}
