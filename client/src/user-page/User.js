@@ -28,16 +28,16 @@ const query = gql`
                 city
             }
             avatar
+            specialization
+            group
         }
     }
 `;
 
-const username = window.location.pathname.split('/')[2];
-
-const Users = () =>
-    <Query query={query} variables={{ "username": username }} fetchPolicy="cache-and-network">
+export default User =>
+    <Query query={query} variables={{ "username": window.location.pathname.split('/')[2] }} fetchPolicy="cache-and-network">
         {({ data, loading }) => loading ?
-            <p>Завантаження користувача...</p> :
+            <h1>Завантаження користувача...</h1> :
             <div className="user-page">
                 <div className="container text-center my-5">
                     <h2 className="name py-0">{data.cognito.name} статистика</h2>
@@ -48,12 +48,12 @@ const Users = () =>
                             <span></span>
                         </div>
                         <div className="end">
-                            <strong>НАСТУПНЕ ОНОВЛЕННЯ</strong>через {60 - new Date().getSeconds()} секунд
+                            <strong>СПЕЦІАЛІЗАЦІЯ</strong>{data.cognito.specialization}
                         </div>
                     </div>
                     <div className="stats">
                         <div>
-                            <strong>ПРОЖИВАЄ У</strong> {data.cognito.location.country}, {data.cognito.location.city}
+                            <strong>ГРУПА</strong> {data.cognito.group}
                         </div>
                         <div>
                             <strong>ПРОБЛЕМ ВИРІШЕНО:</strong> {data.cognito.problems}
@@ -62,15 +62,13 @@ const Users = () =>
                             <strong>ВСЬОГО ВІДПРАВЛЕНИХ РІШЕНЬ:</strong> {data.cognito.solves}
                         </div>
                         <div>
-                            <strong>РЕЙТИНГ КОРИСТУВАЧА: </strong> {((data.cognito.problems / data.cognito.solves) * 100).toFixed(2)}%
+                            <strong>РЕЙТИНГ КОРИСТУВАЧА:</strong> {((data.cognito.problems / data.cognito.solves) * 100).toFixed(2)}%
                         </div>
                     </div>
                 </div>
                 <div id="chart-two">
-                    <Chart user={users} />
+                    <Chart />
                 </div>
             </div>
         }
     </Query>;
-
-export default Users;

@@ -7,12 +7,14 @@ type Query {
 
 type CognitoUser {
     id: ID!
-    username: String!
-    name: String!
+    username: String
+    name: String
     problems: Int
     solves: Int
     location: Location!
     avatar: String
+    specialization: String
+    group: String
 }
 
 type Location {

@@ -27,6 +27,56 @@ const query = `
   }
 }
 `;
+const real_users = [
+  {
+    name: 'Бабій Ігор Володимирович',
+    username: 'young_15',
+    specialization: 'Кібербезпека',
+    group: 'КБ-91'
+  },
+  {
+    name: 'Бова Нікіта Сергійович',
+    username: 'nikwin12',
+    specialization: 'Електротехнічні системи електроспоживання',
+    group: 'ЕТ-91'
+  },
+  {
+    name: 'Бовкун Дмитро Олексійович',
+    username: 'Dmitry_Bovkun',
+    specialization: 'Кібербезпека',
+    group: 'КБ-91'
+  },
+  {
+    name: 'Бугаєц Павло Ігорович',
+    username: 'Pavlo_Bugaets',
+    specialization: 'Комп`ютеризовані системи управління та робототехніка',
+    group: 'СУ-91'
+  },
+  {
+    name: 'Васильченко Микола Анатолійович',
+    username: 'Poochie',
+    specialization: 'Наука про дані та моделювання складних систем',
+    group: 'ПМ.м-01'
+  },
+  {
+    name: 'Демченко Катерина Романівна',
+    username: 'katerina_kd',
+    specialization: 'Прикладна математика',
+    group: 'ПМ-91'
+  },
+  {
+    name: 'Квітницький Роман Олександрович',
+    username: 'roman_kv',
+    specialization: 'Кібербезпека',
+    group: 'КБ-91'
+  },
+  {
+    name: 'Кіхтенко Дмитро Євгенійович',
+    username: 'dima_kihtenko',
+    specialization: 'Кібербезпека',
+    group: 'КБ-91'
+  },
+];
 
 async function start() {
   const app = express();
@@ -44,7 +94,6 @@ async function start() {
     console.log(`Database connection error thrown: ${err}`);
     process.exit(1);
   }
-  // await connectToServer();
 
   const context = { db };
 
@@ -59,16 +108,9 @@ async function start() {
   app.get('/playground', expressPlayground({ endpoint: '/graphql' }));
   app.listen({ port: 4000 }, () => console.log(`GraphQL Service Running @ http://localhost:4000${server.graphqlPath}`));
 
-  // await createUsers(20);
-}
-
-cron.schedule('* * * * *', async () => {
   let date = new Date();
-  console.log(`Before: ${date.getMinutes()}:${date.getSeconds()}:${date.getMilliseconds()}`);
 
   try {
-    let date = new Date();
-
     await db.collection('dates').deleteOne({});
     await db.collection('dates').insertOne({
       fetchDate: {
@@ -100,34 +142,39 @@ cron.schedule('* * * * *', async () => {
         body: JSON.stringify({ query: query })
       })
         .then(res => res.json())
-        .then(json => console.log(json.data.cognito))
+        .then(await = (res) => {
+          db.collection('test').deleteMany({});
+          db.collection('test').insertOne(res);
+        })
         .catch(err => console.log(`Error thrown: ${err}`));
     })
     .catch(err => console.log(`Error thrown: ${err}`));
 
-  console.log(`After: ${date.getMinutes()}:${date.getSeconds()}:${date.getMilliseconds()}`);
-});
+  // await createUsers(8);
+}
+
+start();
 
 async function createUsers(num) {
   await db.collection('users').deleteMany({});
+  await db.collection('real_users').deleteMany({});
 
   var { results } = await fetch(`https://randomuser.me/api/?results=${num}`).then(res => res.json());
   const users = results.map((user, index) => ({
     id: index,
-    name: `${user.name.first} ${user.name.last}`,
-    username: user.login.username,
+    // name: `${user.name.first} ${user.name.last}`,
+    // username: user.login.username,
     problems: user.registered.age,
     solves: user.dob.age,
     location: {
       country: user.location.country,
       city: user.location.city
     },
-    avatar: user.picture.large
+    avatar: user.picture.large,
+    ...real_users[index]
   }));
 
-  await db.collection('users').insertMany(users);
+  await db.collection('real_users').insertMany(users);
 
   return users;
 }
-
-start();

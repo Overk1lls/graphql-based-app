@@ -1,44 +1,32 @@
 import React from 'react';
 import { Line } from 'react-chartjs-2';
 
-export default class chartJS extends React.Component {
-    constructor(props) {
-        super(props);
+const data = {
+    datasets: [
+        {
+            label: 'Кількість відправлених рішень',
+            data: [0, 2, 1, 4],
+            fill: false,
+            backgroundColor: 'rgb(255, 99, 132)',
+            borderColor: 'rgba(255, 99, 132, 0.75)',
+        }
+    ],
+    labels: ['15.05.21', '16.05.21', '17.05.21', '18.05.21']
+};
 
-        this.state = {
-            data: {
-                labels: this.props.user.chart.map(item => item.year),
-                datasets: [
-                    {
-                        label: 'Кількість відправлених рішень',
-                        data: this.props.user.chart.map(item => item.solves),
-                        fill: false,
-                        backgroundColor: 'rgb(255, 99, 132)',
-                        borderColor: 'rgba(255, 99, 132, 0.75)',
-                    }
-                ]
-            },
-            options: {
-                scales: {
-                    yAxes: [
-                        {
-                            ticks: {
-                                precision: 0,
-                                beginAtZero: true
-                            }
-                        }
-                    ]
-                }
+const options = {
+    scales: {
+        yAxes: {
+            ticks: {
+                beginAtZero: true,
+                precision: 0,
             }
         }
     }
-
-    render() {
-        return (
-            <div className="container chart">
-                <h3 className="text-center mt-5 pt-5">Графік рішень</h3>
-                <Line className="my-5" data={this.state.data} options={this.state.options} />
-            </div>
-        );
-    }
 };
+
+export default Chart =>
+    <div className="container chart">
+        <h3 className="text-center my-5 pt-5">Графік рішень</h3>
+        <Line className="my-5" data={data} options={options} />
+    </div>;

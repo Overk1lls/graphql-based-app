@@ -2,7 +2,6 @@ import React from 'react';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import { gql } from 'apollo-boost';
 import { withApollo } from 'react-apollo';
-
 import Menu from './landing/Header';
 import ContentUsers from './landing/ContentUsers';
 import ContentTable from './landing/ContentTable';
@@ -10,6 +9,7 @@ import ContentChart from './landing/ContentChart';
 import ContentCTA from './landing/ContentCTA';
 import Footer from './landing/Footer';
 import User from './user-page/User';
+import AboutUs from './about-us/AboutUs';
 
 export const ROOT_QUERY = gql`
   query {
@@ -39,24 +39,23 @@ class App extends React.Component {
 
   render() {
     return (
-      <>
+      <div className="container main">
         <Router>
           <Menu />
-          <div className="container main">
-            <Switch>
-              <Route exact path="/">
-                <ContentUsers />
-                <ContentTable />
-                <ContentChart />
-                <ContentCTA />
-              </Route>
-              <Route exact path="/user/:username" children={<User />} />
-              <Route component={({ location }) => <h1 className="text-center">"{location.pathname}" not found</h1>} />
-            </Switch>
-          </div>
+          <Switch>
+            <Route path="/user/:username" children={<User />} />
+            <Route path="/about-us" children={<AboutUs />} />
+            <Route path="/">
+              <ContentUsers />
+              <ContentTable />
+              <ContentChart />
+              <ContentCTA />
+            </Route>
+            <Route component={({ location }) => <h1 className="text-center">"{location.pathname}" not found</h1>} />
+          </Switch>
           <Footer />
         </Router>
-      </>
+      </div>
     );
   }
 }

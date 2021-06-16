@@ -13,7 +13,7 @@ class Table extends React.Component {
             data: [],
             offset: 0,
             pageCount: 0,
-            perPage: 10
+            perPage: this.props.count
         }
 
         this.handlePageClick = this.handlePageClick.bind(this);

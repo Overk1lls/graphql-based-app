@@ -7,7 +7,6 @@ import { persistCache } from 'apollo-cache-persist';
 
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './index.css';
-
 import reportWebVitals from './reportWebVitals';
 
 const cache = new InMemoryCache();
