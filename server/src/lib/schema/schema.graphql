@@ -1,11 +1,11 @@
 type Query {
-    cognito(username: String!): CognitoUser!
-    totalCognito: Int!
-    allCognito: [CognitoUser!]!
-    fetchDate: Int!
+    user(username: String!): User!
+    totalUsers: Int!
+    allUsers: [User!]!
+    getDate: Int!
 }
 
-type CognitoUser {
+type User {
     id: ID!
     username: String
     name: String
