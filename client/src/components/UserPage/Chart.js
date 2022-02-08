@@ -1,4 +1,3 @@
-import React from 'react';
 import { Line } from 'react-chartjs-2';
 
 const data = {
@@ -25,8 +24,11 @@ const options = {
     }
 };
 
-export default Chart =>
+const chart = () => (
     <div className="container chart">
         <h3 className="text-center my-5 pt-5">Графік рішень</h3>
         <Line className="my-5" data={data} options={options} />
-    </div>;
+    </div>
+);
+
+export default chart;

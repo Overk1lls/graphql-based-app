@@ -1,6 +1,4 @@
-import React from 'react'
-
-export default AboutUs => (
+const aboutUs = () => (
     <div className="about-us container card my-5">
         <h2 className="text-center">Система трекінгу користувачів шляхом взаємодії з GraphQL</h2>
         <p className="text-center">
@@ -10,3 +8,5 @@ export default AboutUs => (
         </p>
     </div>
 );
+
+export default aboutUs;

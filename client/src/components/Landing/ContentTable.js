@@ -1,7 +1,6 @@
-import React from 'react';
-import logo from '../img/3.png'
+import logo from '../../img/user_table_2.png';
 
-export default ContentTable => (
+const contentTable = () => (
     <div className="container pt-5 my-5">
         <div className="row">
             <div className="col-lg-6 order-2 order-lg-1 content">
@@ -15,3 +14,5 @@ export default ContentTable => (
         </div>
     </div>
 );
+
+export default contentTable;
