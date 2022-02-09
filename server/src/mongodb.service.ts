@@ -13,10 +13,10 @@ export default class MongoDbService {
     public connect = async () => {
         await this._client.connect();
         this._db = this._client.db(this._collection);
-        console.log('Successfully connected to database:', this._db.databaseName);
+        console.log('Successfully connected to the database:', this._db.databaseName);
     };
 
-    public get collection(): Db {
+    public get db(): Db {
         return this._db;
     }
 };

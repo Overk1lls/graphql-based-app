@@ -1,4 +1,7 @@
-export default interface IFakeUsers {
+import { Document, ObjectId, WithId } from "mongodb";
+
+export default interface IUser extends WithId<Document> {
+    _id: ObjectId,
     id: number,
     name: string,
     username: string,

@@ -1,4 +1,4 @@
-export const contentTypes = {
+export const CONTENT_TYPES = {
     formUrlEncoded: 'application/x-www-form-urlencoded',
     JSON: 'application/json'
 };

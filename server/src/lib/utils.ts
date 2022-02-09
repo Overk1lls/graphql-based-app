@@ -1,5 +1,5 @@
 import fetch from 'node-fetch';
-import IFakeUsers from '../interfaces/dto/fakeUsers.dto';
+import IUser from '../interfaces/dto/user.dto';
 
 export const fetchAPI = async (
     url: string,
@@ -19,7 +19,7 @@ export const fetchAPI = async (
 export const createFakeUsers = async (num: number) => {
     const url = `https://randomuser.me/api/?results=${num}`;
     const { results } = await fetch(url).then((res: any) => res.json());
-    const users: IFakeUsers = results.map((user: any, index: number) => ({
+    const users: IUser = results.map((user: any, index: number) => ({
         id: index,
         name: `${user.name.first} ${user.name.last}`,
         username: user.login.username,
