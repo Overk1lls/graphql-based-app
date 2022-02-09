@@ -1,4 +1,4 @@
-const callToAction = () => (
+const CallToAction = () => (
     <section className="cta text-center m-5 my-5">
         <div className="container">
             <h2>Спробуйте програмування прямо зараз</h2>
@@ -15,4 +15,4 @@ const callToAction = () => (
     </section>
 );
 
-export default callToAction;
+export default CallToAction;

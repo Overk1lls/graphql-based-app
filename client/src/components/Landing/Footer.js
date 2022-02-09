@@ -1,4 +1,4 @@
-const footer = () => (
+const Footer = () => (
     <footer
         className="footer-copyright py-3 fixed-bottom"
         style={{ backgroundColor: '#343434' }}
@@ -9,4 +9,4 @@ const footer = () => (
     </footer>
 );
 
-export default footer;
+export default Footer;

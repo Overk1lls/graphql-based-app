@@ -2,6 +2,14 @@
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
+## Todo List
+
+Bug Fixes:
+
+* Fix React Routing
+* Fix menu button click on lower screen resolutions
+* Fix the user data graph
+
 ## Available Scripts
 
 In the project directory, you can run:

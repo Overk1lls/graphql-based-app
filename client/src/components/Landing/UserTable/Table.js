@@ -1,7 +1,8 @@
 import { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
+import { RESPONSES } from "../../../lib/config";
 import PropTypes from 'prop-types';
 import ReactPaginate from "react-paginate";
+import TableWrapper from './TableWrapper';
 
 const Table = ({ count, users }) => {
     const [userTable, setUserTable] = useState(<></>);
@@ -14,9 +15,7 @@ const Table = ({ count, users }) => {
 
     const formTable = () => {
         if (!users) {
-            return (
-                <h4 className='text-center'>Could not load users...</h4>
-            );
+            return <h4 className='text-center'>{RESPONSES.NO_LOAD}</h4>;
         }
         const usersSlice = users.slice(
             paginationSettings.pageOffset,
@@ -27,34 +26,7 @@ const Table = ({ count, users }) => {
             pageCount: Math.ceil(count / paginationSettings.pageMax)
         });
 
-        return (
-            <table className='table table-stripped table-bordered'>
-                <thead className="thead-dark table-stripped">
-                    <tr>
-                        <th>#</th>
-                        <th>Хто</th>
-                        <th>Ім'я користувача</th>
-                        <th>Кількість задач</th>
-                        <th>Кількість спроб</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {usersSlice.map(user => (
-                        <tr key={user.id}>
-                            <td>{Number(user.id) + 1}</td>
-                            <td>
-                                <Link to={{ pathname: `/user/${user.username}` }}>
-                                    {user.name}
-                                </Link>
-                            </td>
-                            <td>{user.username}</td>
-                            <td>{user.problems}</td>
-                            <td>{user.solves}</td>
-                        </tr>
-                    ))}
-                </tbody>
-            </table>
-        );
+        return <TableWrapper users={usersSlice} />;
     };
 
     const handlePageChange = (e) => {
@@ -95,8 +67,7 @@ const Table = ({ count, users }) => {
 };
 
 Table.propTypes = {
-    count: PropTypes.number.isRequired,
-    users: PropTypes.array.isRequired
+    count: PropTypes.number.isRequired
 };
 
 export default Table;

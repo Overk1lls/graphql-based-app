@@ -1,6 +1,7 @@
+import React from 'react';
 import { BrowserRouter as Router, Link } from 'react-router-dom';
 
-const menu = () => (
+const Menu = () =>
     <Router>
         <header className="fixed-top">
             <nav
@@ -8,7 +9,7 @@ const menu = () => (
                 style={{ backgroundColor: '#343434' }}
             >
                 <div className="container">
-                    <Link className="navbar-brand" to={{ pathname: '/' }}>
+                    <Link className="navbar-brand" to='/'>
                         СумДУ E-Olymp студенти
                     </Link>
                     <button
@@ -25,12 +26,12 @@ const menu = () => (
                     <div className="collapse navbar-collapse" id="navbarNav">
                         <ul className="navbar-nav mr-auto mb-3 mb-lg-0">
                             <li className="nav-item">
-                                <Link className="nav-link" to={{ pathname: `/` }}>
+                                <Link className="nav-link" to='/'>
                                     Головна
                                 </Link>
                             </li>
                             <li className="nav-item">
-                                <Link className="nav-link" to={{ pathname: `/about-us` }}>
+                                <Link className="nav-link" to='/about-us'>
                                     Про нас
                                 </Link>
                             </li>
@@ -59,7 +60,6 @@ const menu = () => (
                 </div>
             </nav>
         </header>
-    </Router>
-);
+    </Router>;
 
-export default menu;
+export default Menu;

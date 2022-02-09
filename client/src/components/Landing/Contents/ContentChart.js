@@ -1,6 +1,6 @@
-import logo from '../../img/chart.png';
+import logo from '../../../img/chart.png';
 
-const contentChart = () => (
+const ContentChart = () => (
     <div className="container pt-5 my-5">
         <div className="row">
             <div className="col-lg-7 order-2 order-lg-1 content">
@@ -45,4 +45,4 @@ const contentChart = () => (
     </div>
 );
 
-export default contentChart;
+export default ContentChart;

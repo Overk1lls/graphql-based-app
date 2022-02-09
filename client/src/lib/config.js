@@ -43,3 +43,8 @@ export const FAKE_CHART_USERS = {
     ],
     photo: "https://avatars1.githubusercontent.com/u/45543904?v=4"
 };
+
+export const RESPONSES = {
+    NO_LOAD: 'Завантажити дані користувачів не вдалося',
+    LOADING: 'Завантаження користувачів...'
+};
