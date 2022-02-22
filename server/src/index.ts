@@ -1,20 +1,25 @@
 import { ApolloServer } from 'apollo-server-express';
-import { config } from 'dotenv';
+import { config as dotenvInit } from 'dotenv';
 import { readFileSync } from 'fs';
-import express from 'express';
-import MongoDbService from './mongodb.service';
+import { createApp } from './middleware/app';
+import MongoDbService from './services/mongodb.service';
 import resolvers from './lib/resolvers/resolvers';
-const expressPlayground = require('graphql-playground-middleware-express').default;
-const typeDefs = readFileSync('./src/lib/schema/schema.graphql', 'utf-8');
 
-config();
+dotenvInit();
+
+const {
+  MONGODB_URI,
+  PORT
+} = process.env;
+
+const typeDefs = readFileSync('./src/lib/schema/schema.graphql', 'utf-8');
+export const mongodb = new MongoDbService(MONGODB_URI);
+export const app = createApp();
 
 const start = async () => {
-  const { MONGODB_URI, PORT } = process.env;
+  await mongodb.connect();
 
-  const mongoDbService = new MongoDbService(MONGODB_URI);
-  await mongoDbService.connect();
-  const db = mongoDbService.collection;
+  const db = mongodb.collection;
   const context = { db };
 
   const server = new ApolloServer({
@@ -22,11 +27,15 @@ const start = async () => {
     resolvers,
     context
   });
-  const app = express();
 
   server.applyMiddleware({ app });
-  app.get('/playground', expressPlayground({ endpoint: '/graphql' }));
-  app.listen(PORT || 4000, () => console.log(`GraphQL Service Running @ http://localhost:4000${server.graphqlPath}`));
+
+  app.listen(PORT || 4000, () => {
+    console.log(`GraphQL Service Running @ http://localhost:${PORT}${server.graphqlPath}`);
+  });
 };
 
-start();
+start().catch(err => {
+  console.error(err);
+  process.exit(1);
+});
