@@ -1,11 +1,11 @@
 import IContext from "./context"
 
-type ResolverFn = (parent: any, args: any, ctx: IContext) => any;
+export type ResolverFn = (parent: any, args: any, ctx: IContext) => any;
 
-interface IResolverMap {
+export interface IResolverMap {
     [field: string]: ResolverFn;
 };
 
-export default interface IResolvers {
+export interface IResolvers {
     Query: IResolverMap;
 };

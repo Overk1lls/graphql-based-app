@@ -1,12 +1,13 @@
+import { ApolloError } from "apollo-server-express";
 import { ErrorCode, IError } from "../interfaces/error.interface";
 
-export default class APIError extends Error implements IError {
+export default class APIError extends ApolloError implements IError {
     readonly code: ErrorCode;
     readonly innerError: any;
 
     constructor(code: ErrorCode, message?: string, innerError?: any) {
         message ?
-            super(message) :
+            super(message, code) :
             super(code);
 
         this.code = code;
