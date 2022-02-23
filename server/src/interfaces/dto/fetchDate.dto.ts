@@ -1,6 +1,6 @@
 import { ObjectId } from "mongodb";
 
-export default interface IFetchDate {
+export interface IFetchDate {
     _id: ObjectId,
     fetchDate: {
         hours: number,

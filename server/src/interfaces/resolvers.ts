@@ -1,4 +1,4 @@
-import IContext from "./context"
+import { IContext } from "./context"
 
 export type ResolverFn = (parent: any, args: any, ctx: IContext) => any;
 

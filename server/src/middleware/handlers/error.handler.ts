@@ -1,4 +1,4 @@
-import APIError from "../../errors/api.error";
+import { APIError } from "../../errors/api.error";
 import { ErrorRequestHandler } from "express";
 import { ErrorCode } from "../../interfaces/error.interface";
 

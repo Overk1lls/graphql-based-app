@@ -1,6 +1,6 @@
 import { Db, MongoClient } from "mongodb";
 
-export default class MongoDbService {
+export class MongoDbService {
     private _db: Db;
     private _collection: string;
     private _client: MongoClient;

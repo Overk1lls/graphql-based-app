@@ -1,5 +1,5 @@
-import MongoDbService from './services/mongodb.service';
-import resolvers from './lib/resolvers/resolvers';
+import { MongoDbService } from './services/mongodb.service';
+import { resolvers } from './lib/resolvers/resolvers';
 import { ApolloServer } from 'apollo-server-express';
 import { config as dotenvInit } from 'dotenv';
 import { readFileSync } from 'fs';

@@ -1,5 +1,5 @@
 import { Db } from "mongodb";
 
-export default interface IContext {
+export interface IContext {
     db: Db;
 };

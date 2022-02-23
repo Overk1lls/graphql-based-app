@@ -2,7 +2,7 @@ type Query {
     user(username: String!): User!
     totalUsers: Int!
     allUsers: [User!]!
-    getDate: Int!
+    getDate: FetchDate!
 }
 
 type User {
@@ -20,4 +20,10 @@ type User {
 type Location {
     country: String!
     city: String!
+}
+
+type FetchDate {
+    hours: Int,
+    minutes: Int,
+    seconds: Int
 }

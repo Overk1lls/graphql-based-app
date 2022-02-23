@@ -1,5 +1,5 @@
 import fetch from 'node-fetch';
-import IUser from '../interfaces/dto/user.dto';
+import { IUser } from '../interfaces/dto/user.dto';
 
 export const fetchAPI = async (
     url: string,

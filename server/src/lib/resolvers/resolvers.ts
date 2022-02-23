@@ -1,6 +1,6 @@
-import IFetchDate from "../../interfaces/dto/fetchDate.dto";
-import IUser from "../../interfaces/dto/user.dto";
-import APIError from "../../errors/api.error";
+import { IFetchDate } from "../../interfaces/dto/fetchDate.dto";
+import { IUser } from "../../interfaces/dto/user.dto";
+import { APIError } from "../../errors/api.error";
 // import { IResolvers } from "../../interfaces/resolvers";
 import { IResolvers } from "apollo-server-express";
 import { config as dotenvInit } from "dotenv";
@@ -15,7 +15,7 @@ const {
     DATES_DB
 } = process.env;
 
-const resolvers: IResolvers = {
+export const resolvers: IResolvers = {
     Query: {
         user: async (
             parent,
@@ -88,5 +88,3 @@ const resolvers: IResolvers = {
         }
     }
 };
-
-export default resolvers;
