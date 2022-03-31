@@ -5,4 +5,3 @@
 /token.json
 /.env
 dist
-/src/tests/utils.test.ts

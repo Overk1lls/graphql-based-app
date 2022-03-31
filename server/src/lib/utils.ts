@@ -1,4 +1,5 @@
-import fetch, { HeadersInit, BodyInit, FetchError } from 'node-fetch';
+// import fetch, { HeadersInit, BodyInit, FetchError } from 'node-fetch';
+const fetch = require('node-fetch');
 import { IUser } from '../interfaces/dto/user.dto';
 import { IFakeUser } from '../interfaces/fake-user.interface';
 
@@ -9,7 +10,7 @@ export const fetchAPI = async ({ url, method = 'GET', headers, body }: {
     body?: BodyInit
 }) => fetch(url, { method, headers, body })
     .then(res => res.json())
-    .catch((err: FetchError) => console.error(err));
+    .catch((err) => console.error(err));
 
 export const createFakeUsers = async (num: number) => {
     const url = `https://randomuser.me/api/?results=${num}`;
