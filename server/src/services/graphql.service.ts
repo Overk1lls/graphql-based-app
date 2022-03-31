@@ -1,25 +1,31 @@
-import { fetchAPI } from "../lib/utils";
+import { BodyInit, HeadersInit } from 'node-fetch';
+import { fetchAPI } from '../lib/utils';
 
 export default class GraphQLService {
     private _token: string;
-    private _users: Object[];
+    private _users: object[];
 
     constructor(url: string, headers: HeadersInit, body: BodyInit) {
-        fetchAPI(url, 'POST', headers, body)
-            .then((token: string) => {
-                this._token = token
-            });
+        fetchAPI({ url, method: 'POST', headers, body })
+            .then((token: string) => this._token = token);
     }
 
-    public fetchEOlymp = (url: string, method: string, headers: HeadersInit, body: BodyInit) => {
-        headers = {
+    fetchEOlymp = async ({ url, method = 'GET', headers, body }: {
+        url: string,
+        method?: string,
+        headers?: HeadersInit,
+        body?: BodyInit
+    }) => fetchAPI({
+        url,
+        method,
+        headers: {
             ...headers,
-            'Authorization': `Bearer ${this._token}`
-        };
-        return fetchAPI(url, method, headers, body);
-    };
+            authorization: `Bearer ${this._token}`
+        },
+        body
+    });
 
-    public get users(): Object[] {
+    public get users(): object[] {
         return this._users;
     }
-};
+}

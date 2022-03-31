@@ -1,25 +1,21 @@
-import fetch from 'node-fetch';
+import fetch, { HeadersInit, BodyInit, FetchError } from 'node-fetch';
 import { IUser } from '../interfaces/dto/user.dto';
+import { IFakeUser } from '../interfaces/fake-user.interface';
 
-export const fetchAPI = async (
-    url: string,
-    method: string,
-    headers: any,
-    body: any
-) => {
-    return await fetch(url, {
-        method,
-        headers,
-        body
-    })
-        .then((res: any) => res.json())
-        .catch((err: Error) => console.error(err));
-};
+export const fetchAPI = async ({ url, method = 'GET', headers, body }: {
+    url?: string,
+    method?: string,
+    headers?: HeadersInit,
+    body?: BodyInit
+}) => fetch(url, { method, headers, body })
+    .then(res => res.json())
+    .catch((err: FetchError) => console.error(err));
 
 export const createFakeUsers = async (num: number) => {
     const url = `https://randomuser.me/api/?results=${num}`;
-    const { results } = await fetch(url).then((res: any) => res.json());
-    const users: IUser = results.map((user: any, index: number) => ({
+    const { results }: Record<string, any> = await fetchAPI({ url });
+
+    const users = results.map((user: Record<string, any> & IFakeUser, index: number) => ({
         id: index,
         name: `${user.name.first} ${user.name.last}`,
         username: user.login.username,
@@ -30,6 +26,7 @@ export const createFakeUsers = async (num: number) => {
             city: user.location.city
         },
         avatar: user.picture.large
-    }));
+    })) as IUser[];
+
     return users;
 };

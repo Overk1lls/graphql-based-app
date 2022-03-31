@@ -3,4 +3,4 @@ export interface IUser {
     username: string,
     specialization: string,
     group: string
-};
+}

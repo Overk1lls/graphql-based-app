@@ -1,18 +1,17 @@
-module.exports = {
-    preset: 'ts-jest',
-    roots: ['./src'],
+// Sync object
+/** @type {import('@jest/types').Config.InitialOptions} */
+const config = {
+    verbose: true,
+    moduleFileExtensions: ['js', 'json', 'ts'],
+    rootDir: 'src',
+    testRegex: '.*\\.(spec|test)\\.ts$',
     transform: {
-        '^.+\\.tsx?$': 'ts-jest',
+        '^.+\\.tsx?$': 'ts-jest'
     },
-    extensionsToTreatAsEsm: ['.ts'],
-    globals: {
-        'ts-jest': {
-            'useESM': true
-        }
-    },
-    moduleNameMapper: {
-        '^(\\.{1,2}/.*)\\.js$': '$1'
-    },
-    moduleFileExtensions: ['ts', 'tsx', 'js', 'jsx', 'json', 'node'],
-    testRegex: '(/__tests__/.*|(\\.|/)(test|spec))\\.tsx?$',
+    collectCoverageFrom: ['**/*.(t|j)s'],
+    coverageDirectory: '../coverage',
+    testEnvironment: 'node',
+    extensionsToTreatAsEsm: ['.ts']
 };
+
+module.exports = config;

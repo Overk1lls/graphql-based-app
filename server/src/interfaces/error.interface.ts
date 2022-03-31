@@ -4,7 +4,7 @@ export enum ErrorCode {
     FORBIDDEN = 'FORBIDDEN',
     NOT_FOUND = 'NOT_FOUND',
     SERVER = 'SERVER',
-};
+}
 
 export interface IError {
     code: ErrorCode

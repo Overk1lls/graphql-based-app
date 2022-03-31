@@ -1,7 +1,7 @@
-import { Document, ObjectId, WithId } from "mongodb";
+import { ObjectId } from 'mongodb';
 
-export interface IUser extends WithId<Document> {
-    _id: ObjectId,
+export interface IUser {
+    _id?: ObjectId,
     id: number,
     name: string,
     username: string,
@@ -12,4 +12,4 @@ export interface IUser extends WithId<Document> {
         city: string
     },
     avatar: string
-};
+}

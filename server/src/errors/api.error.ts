@@ -1,5 +1,5 @@
-import { ApolloError } from "apollo-server-express";
-import { ErrorCode, IError } from "../interfaces/error.interface";
+import { ApolloError } from 'apollo-server-express';
+import { ErrorCode, IError } from '../interfaces/error.interface';
 
 export class APIError extends ApolloError implements IError {
     readonly code: ErrorCode;

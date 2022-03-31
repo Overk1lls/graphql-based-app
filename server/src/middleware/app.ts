@@ -1,7 +1,7 @@
 import express from 'express';
 import cors from 'cors';
+import expressPlayground from 'graphql-playground-middleware-express';
 import { errorHandler } from './handlers/error.handler';
-const expressPlayground = require('graphql-playground-middleware-express').default;
 
 export const createApp = () => {
     const app = express();

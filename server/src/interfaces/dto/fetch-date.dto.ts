@@ -1,4 +1,4 @@
-import { ObjectId } from "mongodb";
+import { ObjectId } from 'mongodb';
 
 export interface IFetchDate {
     _id: ObjectId,
@@ -7,4 +7,4 @@ export interface IFetchDate {
         minutes: number,
         seconds: number
     }
-};
+}
