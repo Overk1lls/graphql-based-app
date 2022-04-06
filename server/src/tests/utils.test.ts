@@ -1,9 +1,15 @@
-// import { fetchAPI } from "../lib/utils";
-
 // jest.mock('node-fetch');
+// console.log('fetch-mock', require('fetch-mock-jest'))
+jest.mock('node-fetch', () => jest.fn());
+const nodeFetch = require('node-fetch');
+const { fetchAPI } = require('../lib/utils');
+// import * as fetchModule from 'node-fetch';
+// const fetchModule = require('node-fetch');
+// const fetch = fetchModule.default;
+// console.log('fetch', fetch);
+
 
 // import { IUser } from '../interfaces/dto/user.dto';
-import * as utils from '../lib/utils';
 
 // jest.mock('../lib/utils', () => ({
 //     __esModule: true,
@@ -13,21 +19,20 @@ import * as utils from '../lib/utils';
 // ------- NOT WORKING
 
 describe('Utils Test', () => {
+
     it('', async () => {
-        // const fetch = await import('node-fetch');
-        // const { fetchAPI } = await import('../lib/utils');
-        
-        // MOCK FETCH HERE fetch.mockReturnValue(Promise.resolve(5))
+        // MOCK FETCH HERE
+        nodeFetch.mockReturnValue(Promise.resolve(5));
 
         // CALL fetchAPI()
-        // const response = await fetchAPI({});
+        const response = await fetchAPI({});
 
         // EXPECT TO BE WORKING
-        // expect(fetch).toHaveBeenCalled();
-        // expect(response).toBe(5);
+        expect(nodeFetch).toHaveBeenCalled();
+        expect(response).toBe(5);
 
-        console.log(utils);
-    })
+        // console.log(utils);
+    });
 
     // it('Should create 2 fake users', async () => {
         // const fakeUsers: Record<string, any> = {
