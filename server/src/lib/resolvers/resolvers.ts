@@ -1,10 +1,9 @@
 import { IFetchDate } from '../../interfaces/dto/fetch-date.dto';
 import { IUser } from '../../interfaces/dto/user.dto';
-import { APIError } from '../../errors/api.error';
+import { APIError, ErrorCode } from '../../services/api-error.service';
 // import { IResolvers } from "../../interfaces/resolvers";
 import { IResolvers } from 'apollo-server-express';
 import { config as dotenvInit } from 'dotenv';
-import { ErrorCode } from '../../interfaces/error.interface';
 import { Db } from 'mongodb';
 
 dotenvInit();

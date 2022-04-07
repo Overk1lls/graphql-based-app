@@ -1,6 +1,5 @@
-import { APIError } from '../../errors/api.error';
+import { APIError, ErrorCode } from '../../services/api-error.service';
 import { ErrorRequestHandler } from 'express';
-import { ErrorCode } from '../../interfaces/error.interface';
 
 export const errorHandler: ErrorRequestHandler =
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
