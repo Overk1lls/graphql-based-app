@@ -1,19 +1,27 @@
-import fetch, { HeadersInit, BodyInit, FetchError } from 'node-fetch';
+/* eslint-disable @typescript-eslint/no-explicit-any */
+
+import axios, { AxiosRequestConfig, AxiosRequestHeaders } from 'axios';
 import { IUser } from '../interfaces/dto/user.dto';
 import { IFakeUser } from '../interfaces/fake-user.interface';
+import { APIError, ErrorCode } from '../services/api-error.service';
 
 export const fetchAPI = async ({ url, method = 'GET', headers, body }: {
-    url?: string,
-    method?: string,
-    headers?: HeadersInit,
-    body?: BodyInit
-}) => fetch(url, { method, headers, body })
-    .then(res => res.json())
+    url: string,
+    method?: 'GET' | 'POST',
+    headers?: AxiosRequestHeaders,
+    body?: AxiosRequestConfig
+}) => axios(url, { method, headers, data: body })
+    .then(res => {
+        if (res.status >= 400) {
+            throw new APIError(ErrorCode.BAD_REQUEST);
+        }
+        return res.data;
+    })
     .catch(err => console.error(err));
 
 export const createFakeUsers = async (num: number) => {
     const url = `https://randomuser.me/api/?results=${num}`;
-    const { results }: Record<string, any> = await fetchAPI({ url });
+    const { results }: { results: Record<string, any> } = await fetchAPI({ url });
 
     const users = results.map((user: Record<string, any> & IFakeUser, index: number) => ({
         id: index,
@@ -30,3 +38,4 @@ export const createFakeUsers = async (num: number) => {
 
     return users;
 };
+/* eslint-disable @typescript-eslint/no-explicit-any */
