@@ -1,7 +1,7 @@
 import { ApolloServer, IResolvers } from 'apollo-server-express';
 import { readFileSync } from 'fs';
 import { ObjectId } from 'mongodb';
-import { users } from '../databases/users.db';
+import { users } from '../repositories/students';
 import { IFetchDate } from '../interfaces/dto/fetch-date.dto';
 
 const typeDefs = readFileSync(

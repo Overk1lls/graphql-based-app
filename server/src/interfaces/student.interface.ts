@@ -1,4 +1,4 @@
-export interface IUser {
+export interface IStudent {
     name: string,
     username: string,
     specialization: string,

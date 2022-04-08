@@ -12,7 +12,7 @@ export default class GraphQLService {
 
     fetchEOlymp = async ({ url, method = 'GET', headers, body }: {
         url: string,
-        method?: string,
+        method?: 'GET' | 'POST',
         headers?: HeadersInit,
         body?: BodyInit
     }) => fetchAPI({

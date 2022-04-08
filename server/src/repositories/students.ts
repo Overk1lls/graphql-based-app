@@ -1,6 +1,6 @@
-import { IUser } from '../interfaces/user.interface';
+import { IStudent } from '../interfaces/student.interface';
 
-export const users: IUser[] = [
+export const users: IStudent[] = [
     {
         name: 'Бабій Ігор Володимирович',
         username: 'young_15',

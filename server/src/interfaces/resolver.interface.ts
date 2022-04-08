@@ -1,4 +1,4 @@
-import { IContext } from './context';
+import { IContext } from './context.interface';
 
 export type ResolverFn = (parent: unknown, args: unknown, ctx: IContext) => unknown;
 
